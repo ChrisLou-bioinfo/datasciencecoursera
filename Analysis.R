@@ -13,21 +13,18 @@ download.file(url, file.path("./dataFiles.zip"))
 unzip(zipfile = "dataFiles.zip")
 
 ### find labels and features
-activityLabels <- read.table("./UCI HAR Dataset/activity_labels.txt",
-                             col.names  =c("classLabels", "activityName"))
-features <- read.table("./UCI HAR Dataset/features.txt",
-                             col.names  =c("index", "featureNames"))
-
-featuresWanted <- grep("(mean|std)\\(\\)", features[, "featureNames"])
-measurements <- features[featuresWanted, "featureNames"]
+activityLabels <- read.table("./UCI HAR Dataset/activity_labels.txt",col.names  =c("classLabels", "activityName"))
+features <- read.table("./UCI HAR Dataset/features.txt",col.names  =c("index", "featureNames"))
+featuresget <- grep("(mean|std)\\(\\)", features[, "featureNames"])
+measurements <- features[featuresget, "featureNames"]
 measurements <- gsub('[()]', '', measurements)
 
 ### get datasets
 
 train <- read.table("./UCI HAR Dataset/train/X_train.txt")
 test<- read.table("./UCI HAR Dataset/test/X_test.txt")
-train<-train[,featuresWanted]
-test<-test[,featuresWanted]
+train<-train[,featuresget]
+test<-test[,featuresget]
 colnames(train)<-measurements
 colnames(test)<-measurements
 trainActivities <- read.table("./UCI HAR Dataset/train/Y_train.txt",col.names = c("Activity"))
