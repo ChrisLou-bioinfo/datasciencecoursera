@@ -42,4 +42,4 @@ mergedata[["SubjectNum"]] <- as.factor(mergedata[, "SubjectNum"])
 mergedata <- reshape2::melt(data = mergedata, id = c("SubjectNum", "Activity"))
 mergedata <- reshape2::dcast(data = mergedata, SubjectNum + Activity ~ variable, fun.aggregate = mean)
 ### export result
-write.csv(mergedata,file="tidyData.csv",row.names = F)
+write.table(mergedata,file="tidyData.txt",row.names = F)
