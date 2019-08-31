@@ -66,4 +66,4 @@
 ##### mergedata <- reshape2::dcast(data = mergedata, SubjectNum + Activity ~ variable, fun.aggregate = mean)
 >  calculate mean by SubjectNum and Activity in mergedata
 ### export result
-##### write.csv(mergedata,file="tidyData.csv",row.names = F)
+##### write.table(mergedata,file="tidyData.txt",row.names = F)
